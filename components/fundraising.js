@@ -14,14 +14,7 @@ export default class Fundraising extends React.Component {
 
         <Text>Dashboard</Text>
         <Button title="add">+</Button>
-        <Button
-          title="Connect"
-          onPress={() => this.props.navigation.navigate('Connect')}
-        />
-        <Button
-          title="Calendar"
-          onPress={() => this.props.navigation.navigate('Calendar')}
-        />
+        
       </View>
     )
   }

@@ -14,18 +14,6 @@ export default class VideoChat extends React.Component {
         <Text>menu to switch camera, mute camera, end call, mute mic, chat</Text>
         <Text>Swipe up menu with: reduced background noise, blur background, add participants </Text>
         
-        <Button
-          title="Fundraising"
-          onPress={() => this.props.navigation.navigate('Fundraising')}
-        />
-        <Button
-          title="Connect"
-          onPress={() => this.props.navigation.navigate('Connect')}
-        />
-        <Button
-          title="Calendar"
-          onPress={() => this.props.navigation.navigate('Calendar')}
-        />
       </View>
     )
   }

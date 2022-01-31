@@ -15,19 +15,6 @@ export default class Connect extends React.Component {
         <Text>Maybe firebase for backend. category : team/ or client to switch between sections</Text>
         <Text>Search</Text>
         <Text>List of contacts</Text>
-
-        <Button
-          title="Fundraising"
-          onPress={() => this.props.navigation.navigate('Fundraising')}
-        />
-        <Button
-          title="Connect"
-          onPress={() => this.props.navigation.navigate('Connect')}
-        />
-        <Button
-          title="Calendar"
-          onPress={() => this.props.navigation.navigate('Calendar')}
-        />
       </View>
     )
   }

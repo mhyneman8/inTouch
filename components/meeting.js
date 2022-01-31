@@ -19,18 +19,6 @@ export default class Meeting extends React.Component {
         />
         {/* button for call settings */}
         
-        <Button
-          title="Fundraising"
-          onPress={() => this.props.navigation.navigate('Fundraising')}
-        />
-        <Button
-          title="Connect"
-          onPress={() => this.props.navigation.navigate('Connect')}
-        />
-        <Button
-          title="Calendar"
-          onPress={() => this.props.navigation.navigate('Calendar')}
-        />
       </View>
     )
   }

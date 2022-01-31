@@ -124,18 +124,6 @@ export default function CalendarScreen() {
         />
 
         <Button
-          title="Fundraising"
-          onPress={() => this.props.navigation.navigate('Fundraising')}
-        />
-        <Button
-          title="Connect"
-          onPress={() => this.props.navigation.navigate('Connect')}
-        />
-        <Button
-          title="Calendar"
-          onPress={() => this.props.navigation.navigate('Calendar')}
-        />
-        <Button
           title="Meeting"
           onPress={() => this.props.navigation.navigate('Meeting')}
         />
