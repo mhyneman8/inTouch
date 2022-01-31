@@ -1,51 +1,99 @@
-import React from 'react';
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { useTheme } from '@react-navigation/native';
+// import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 
-import Dashboard from './components/dashboard';
+// screens
+import Fundraising from './components/fundraising';
 import Connect from './components/connect';
-import Calendar from './components/calendar';
+import CalendarScreen from './components/calendar';
 import Meeting from './components/meeting';
 import VideoChat from './components/video-chat';
 
+// screen name
+const homeScreen = "Connect";
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+// const Stack = createStackNavigator();
 
-export default class App extends React.Component {
-  render() {
+function App() {
+  const { colors } = useTheme();
     return (
       <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Dashboard"
-        >
-          <Stack.Screen
-            name="Dashboard"
-            component={Dashboard}
+        <Tab.Navigator
+          initialRouteName={homeScreen}
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+              let rn = route.name;
+
+              if(rn = homeScreen) {
+                iconName = focused ? 'home' : 'home-outline';
+              } else if (rn === Fundraising) {
+                iconName = focused ? 'list' : 'list-outline';
+              } else if (rn === CalendarScreen) {
+                iconName = focused ? 'settings' : 'settings-outline';
+              } 
+              
+              return <Ionicons name={iconName} size={size} color={color} />;
+              // else if (rn === Meeting) {
+              //   iconName = focused ? '' : '-outline'
+              // } else if (rn === VideoChat) {
+              //   iconName = focused ? '' : '-outline'
+              // }
+            },
+          })}
+          screenOptions={
+            {
+              "tabBarActiveTintColor": "tomato",
+              "tabBarInactiveTintColor": "grey",
+              "tabBarLabelStyle": { 
+                paddingBottom: 10, 
+                fontSize: 10
+              },
+              "tabBarStyle": [
+                {
+                  "display": "flex",
+                  "padding": 10, 
+                  "height": 70
+                },
+                null
+            ]
+            }
+          }
+          >
+          <Tab.Screen
+            name="Fundraising"
+            component={Fundraising}
           />
-          <Stack.Screen
+          <Tab.Screen
             name="Connect"
             component={Connect}
           />
-          <Stack.Screen
+          {/* <Tab.Screen
+            name="add"
+          /> */}
+          <Tab.Screen
             name="Calendar"
-            component={Calendar}
+            component={CalendarScreen}
           />
-          <Stack.Screen
+          <Tab.Screen
             name="Meeting"
             component={Meeting}
           />
-          <Stack.Screen
+          {/* <Tab.Screen
             name="VideoChat"
             component={VideoChat}
-          />
-        </Stack.Navigator>
+          /> */}
+        </Tab.Navigator>
       </NavigationContainer>
     );
   }
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -55,3 +103,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
