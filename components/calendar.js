@@ -4,6 +4,10 @@ import CalendarPicker from 'react-native-calendar-picker';
 import * as Calendar from 'expo-calendar';
 import { StatusBar } from 'expo-status-bar';
 import { TextInput } from 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import VideoChat from './video-chat';
+import Meeting from './meeting';
+
 
 // export default class CalendarScreen extends React.Component {
 //     constructor(props) {
@@ -54,7 +58,9 @@ async function createCalendar() {
     });
 }
 
-export default function CalendarScreen() {
+const Stack = createStackNavigator();
+
+export default function CalendarScreen({ navigation }) {
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     const [friendNameText, setFriendNameText] = useState('');
     const startDate = selectedStartDate
@@ -118,15 +124,26 @@ export default function CalendarScreen() {
         <Text>Show tasks at bottom when clicked on day</Text>
         <Text>Click meeting event to see details</Text>
 
+        <Stack.Navigator>
+            <Stack.Screen
+                name="VideoChat"
+                component={VideoChat}
+            />
+            <Stack.Screen
+                name="Meeting"
+                component={Meeting}
+            />
+        </Stack.Navigator>
+
         <Button 
             title="VideoChat"
-            onPress={() => this.props.navigation.navigate('VideoChat')}
+            onPress={() => navigation.navigate('VideoChat')}
         />
 
         <Button
           title="Meeting"
-          onPress={() => this.props.navigation.navigate('Meeting')}
-        />
+          onPress={() => navigation.navigate('Meeting')}
+        /> 
 
       </View>
     )
