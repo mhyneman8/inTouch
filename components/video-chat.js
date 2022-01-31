@@ -15,8 +15,8 @@ export default class VideoChat extends React.Component {
         <Text>Swipe up menu with: reduced background noise, blur background, add participants </Text>
         
         <Button
-          title="Dashboard"
-          onPress={() => this.props.navigation.navigate('Dashboard')}
+          title="Fundraising"
+          onPress={() => this.props.navigation.navigate('Fundraising')}
         />
         <Button
           title="Connect"

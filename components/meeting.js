@@ -20,8 +20,8 @@ export default class Meeting extends React.Component {
         {/* button for call settings */}
         
         <Button
-          title="Dashboard"
-          onPress={() => this.props.navigation.navigate('Dashboard')}
+          title="Fundraising"
+          onPress={() => this.props.navigation.navigate('Fundraising')}
         />
         <Button
           title="Connect"
