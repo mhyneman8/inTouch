@@ -8,7 +8,9 @@ export default class TopBar extends React.Component {
         return (
             <View style={styles.container}>
                 <Text></Text>
-                <Text>inTouch</Text>
+                <Text
+                    style={styles.title}
+                >inTouch</Text>
                 
                 <MaterialCommunityIcons
                 name="bell"
@@ -32,5 +34,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 10,
         paddingRight: 10
+    },
+    title: {
+        fontSize: 25, 
     }
 });
