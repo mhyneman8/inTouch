@@ -31,8 +31,26 @@ import projects from './project-data';
 
 
   export default function Fundraising() {
-    const [projectName, setProjectName] = useState(null);
-    const [projectArray, setProjectArray] = useState([]);
+    const [projectName, setProjectName] = useState();
+    const [projectArray, setProjectArray] = useState([
+      {title: "title1", description: "Des1"},
+      {title: "title2", description: "Des2"},
+      {title: "title3", description: "Des3"},
+    ]);
+
+    // const pName = projectArray.map(project => project.title)
+
+    const list = () => {
+      return projectArray.map((project) => {
+        return (
+          <View key={project.title} style={{margin: 10}}>
+            <Text>{project.title}</Text>
+            <Text>{project.description}</Text>
+          </View>
+        );
+      })
+    }
+ 
   // console.log(projectName + " name")
   // console.log(projectArray + " array")
   //   const addProject = () => {
@@ -64,13 +82,20 @@ import projects from './project-data';
       <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Title</Text>
         <Text>Notification</Text>
+
+        <Text>{list()}</Text>
+        
         <TextInput
           style={styles.input}
           value={projectName}
           placeholder={"Enter new project name"}
           onChangeText={setProjectName}
-          onSubmitEditing={addNewProject}
+          onSubmitEditing={() => setProjectArray((projectArray) => 
+              [...projectArray, {title: projectName, description: 'testing'}]
+            )}
           />
+
+          
 
           {/* <TextInput
           name="goal"
@@ -83,7 +108,7 @@ import projects from './project-data';
 
         {/* <Text>{this.state.projectList[0].name}</Text> */}
         <View>
-          <Text>Array: {projectArray[1]}</Text>
+           
           {/* { (projectArray === null) 
             ? <Text>Null</Text>
             : <Text>{projectArray}</Text>
