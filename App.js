@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import Constants from 'expo-constants';
 import { StyleSheet, Text, View } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,7 +8,7 @@ import { useTheme } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // screens
 import Fundraising from './components/fundraising';
@@ -15,6 +16,7 @@ import Connect from './components/connect';
 import CalendarScreen from './components/calendar';
 import Meeting from './components/meeting';
 import VideoChat from './components/video-chat';
+import TopBar from './components/topBar';
 
 // screen name
 const homeScreen = "Connect";
@@ -27,6 +29,8 @@ function App() {
   const { colors } = useTheme();
     return (
       <NavigationContainer>
+        <View style={styles.statusBar} />
+        <TopBar />
         <Tab.Navigator
           initialRouteName={homeScreen}
           activeColor="#f0edf6"
@@ -98,6 +102,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  statusBar: {
+    backgroundColor: '#c21858',
+    height: Constants.statusBarHeight
+  }
 });
 
 export default App;
