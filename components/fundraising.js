@@ -80,8 +80,6 @@ import projects from './project-data';
 
     return (
       <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Title</Text>
-        <Text>Notification</Text>
 
         <Text>{list()}</Text>
         
