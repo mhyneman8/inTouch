@@ -155,10 +155,6 @@ export default class Connect extends React.Component {
     return (
       // <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
       <View style={{ flex: 1 }}>
-        <Text>menu</Text>
-        <Text>Title</Text>
-        <Text>Notifications</Text>
-
 
         <GiftedChat
           messages={this.state.messages}
