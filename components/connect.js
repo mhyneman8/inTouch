@@ -86,27 +86,31 @@ export default class Connect extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* <View style={{ flex: 1 }}> */}
-        <Text>menu</Text>
-        <Text>Title</Text>
-        <Text>Notifications</Text>
-        <Text style={styles.title}>Connect</Text>
-          <Text style={styles.subTitle}>Your Chats: </Text>
-        <View style={styles.container}>
-          <View>
-            {this.state.chatRooms.map(({ _id, user2 }) => (
-              <View style={styles.row}>
-                {/* <Text key={_id}>{user2}</Text> */}
-                <TouchableOpacity style={styles.button}>
-                <Text key={_id}>{user2}</Text>
-                </TouchableOpacity>
-                
-              </View>
-            ))}
-          </View>
-        </View>
+      // <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 1 }}>
 
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={messages => this.onSend(messages)}
+          user={this.state.user}
+        />
+        {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
+        }
+
+        {/* 
+WILL NEED TO CHANGE FROM TEST MODE TO PRODUCTION MODE (eventually)(5.3)
+Created 1/31/22; will need to change security rules after 30 days (so by 3/2)
+5.3: https://careerfoundry.com/en/course/full-stack-immersion/exercise/real-time-apps#storing-chat-data-cloud-firestore
+
+other features to consider adding: 
+ - system messages for when new users join chat? (5.2) 
+ - custom bubble colors (5.2)
+ - ACCESSIBILITY (5.2) 
+ 
+ 5.2: https://careerfoundry.com/en/course/full-stack-immersion/exercise/chat-ui-accessibility#summary
+ */}
+
+        <Text>Connect</Text>
         <Text>Team & Community options</Text>
         <Text>Search</Text>
         <Text>List of contacts</Text>
