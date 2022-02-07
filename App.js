@@ -24,7 +24,6 @@ import SignupScreen from './components/signup';
 const homeScreen = "Connect";
 
 const Tab = createMaterialBottomTabNavigator();
-// const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function Home() {
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   statusBar: {
-    backgroundColor: '#c21858',
+    backgroundColor: '#c9b6fc',
     height: Constants.statusBarHeight
   }
 });
