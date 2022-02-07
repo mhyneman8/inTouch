@@ -10,16 +10,18 @@ export default class TopBar extends React.Component {
                 <Text></Text>
                 <Text
                     style={styles.title}
-                >inTouch</Text>
-                
+                >
+                    <Text>in</Text>
+                    <Text style={{ fontWeight: 'bold' }}>
+                        Touch
+                    </Text>
+                </Text>
                 <MaterialCommunityIcons
                 name="bell"
                 activeColor="#f0edf6"
                 inactiveColor="#3e2465"
                 size={26}
                 />
-               
-                
             </View>
         );
     }
