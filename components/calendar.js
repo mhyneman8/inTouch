@@ -136,8 +136,8 @@ export default function CalendarScreen({ navigation }) {
             onPress={addNewEvent}
         />
 
-        <Text>Show tasks at bottom when clicked on day</Text>
-        <Text>Click meeting event to see details</Text>
+        {/* <Text>Show tasks at bottom when clicked on day</Text>
+        <Text>Click meeting event to see details</Text> */}
 
         {/* <Stack.Navigator>
             <Stack.Screen
