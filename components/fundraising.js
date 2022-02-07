@@ -71,6 +71,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
         
         {shouldShow ? (
             <View style={styles.inputContainer}>
+              <MaterialCommunityIcons
+                name="close"
+                size={30}
+                onPress={() => setShouldShow(!shouldShow)}
+              />
+              
               <TextInput
                 style={styles.input}
                 value={projectName}
@@ -103,25 +109,22 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
             />
 
           </View>
-        ) : null }
-
-        
-
+        ) : (
+          <View>
+            <MaterialCommunityIcons
+              style={{ backgroundColor: "grey", borderRadius: 50, width: 60, height: 60}}
+              name="plus"
+              color="purple"
+              size={40}
+              onPress={() => setShouldShow(!shouldShow)}
+            />  
+          </View>
+        ) }
         {/* <Text>Project Pics and progress bar</Text>
         <Text>Click on project to see updates and description of fundraising project</Text>
          */}
 
-        <View style={{ backgroundColor: "grey", borderRadius: 50, width: 60, height: 60}}>
-          <Button
-            title="New Project"
-            onPress={() => setShouldShow(!shouldShow)}
-          />
-          <MaterialCommunityIcons
-            name="plus"
-            color="purple"
-            size={36}
-          />  
-        </View>
+        
       </View>
     )
 }
