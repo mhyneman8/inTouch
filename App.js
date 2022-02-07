@@ -42,7 +42,7 @@ function Home() {
           tabBarLabel: 'Fundraising',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="bell"
+              name="currency-usd"
               color={color}
               size={26}
               />
@@ -56,7 +56,7 @@ function Home() {
           tabBarLabel: 'Connect',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons 
-              name="group" 
+              name="message" 
               color={color} 
               size={26} 
             />
