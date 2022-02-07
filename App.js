@@ -105,7 +105,32 @@ function App() {
           inactiveColor="#3e2465"
         >
 
-        {/* {isLoggedIn ? ( main ) : (Login/ signup options)} */}
+        {/* {isLoggedIn ? ( 
+          <Stack.Navigator
+          initialRouteName={Home}
+          activeColor="#f0edf6"
+          inactiveColor="#3e2465"
+        >
+          ) : (
+            <Stack.Navigator
+          initialRouteName={LoginScreen}
+          activeColor="#f0edf6"
+          inactiveColor="#3e2465"
+        >
+            Login/ signup options
+            )} */}
+
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen 
+            name="Signup"
+            component={SignupScreen}
+            options={{ headerShown: false }}
+          />
 
           <Stack.Screen
             name="Connect"
@@ -128,15 +153,7 @@ function App() {
             name="Meeting"
             component={Meeting}
           />
-          
-          <Stack.Screen 
-            name="Login"
-            component={LoginScreen}
-          />
-          <Stack.Screen 
-            name="Signup"
-            component={SignupScreen}
-          />
+        
         </Stack.Navigator>
       </NavigationContainer>
     );
