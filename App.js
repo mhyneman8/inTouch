@@ -24,7 +24,6 @@ import SignupScreen from './components/signup';
 const homeScreen = "Connect";
 
 const Tab = createMaterialBottomTabNavigator();
-// const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function Home() {
@@ -42,7 +41,7 @@ function Home() {
           tabBarLabel: 'Fundraising',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
-              name="bell"
+              name="currency-usd"
               color={color}
               size={26}
               />
@@ -56,7 +55,7 @@ function Home() {
           tabBarLabel: 'Connect',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons 
-              name="group" 
+              name="message" 
               color={color} 
               size={26} 
             />
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   statusBar: {
-    backgroundColor: '#c21858',
+    backgroundColor: '#c9b6fc',
     height: Constants.statusBarHeight
   }
 });

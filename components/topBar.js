@@ -10,15 +10,18 @@ export default class TopBar extends React.Component {
                 <Text></Text>
                 <Text
                     style={styles.title}
-                >inTouch</Text>
-                
+                >
+                    <Text>in</Text>
+                    <Text style={{ fontWeight: 'bold' }}>
+                        Touch
+                    </Text>
+                </Text>
                 <MaterialCommunityIcons
                 name="bell"
-                color="purple"
+                activeColor="#f0edf6"
+                inactiveColor="#3e2465"
                 size={26}
                 />
-               
-                
             </View>
         );
     }
@@ -29,13 +32,14 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         height: 52,
         flexDirection: 'row',
-        backgroundColor: 'yellow',
+        backgroundColor: '#694fad',
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingLeft: 10,
         paddingRight: 10
     },
     title: {
-        fontSize: 25, 
+        fontSize: 25,
+        color: 'white' 
     }
 });

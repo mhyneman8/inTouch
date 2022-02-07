@@ -88,9 +88,6 @@ export default class Connect extends React.Component {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         {/* <View style={{ flex: 1 }}> */}
-        <Text>menu</Text>
-        <Text>Title</Text>
-        <Text>Notifications</Text>
         <Text style={styles.title}>Connect</Text>
         <Text style={styles.subTitle}>Your Chats: </Text>
         <View style={styles.container}>
@@ -109,7 +106,6 @@ export default class Connect extends React.Component {
 
         <Text>Team & Community options</Text>
         <Text>Search</Text>
-        <Text>List of contacts</Text>
       </View>
     )
   }
