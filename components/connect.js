@@ -1,11 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import ConnectMessage from './connectMessage';
 
+// const Stack = createStackNavigator();
+// const AppNavigator = StackNavigator({
+//   Messages: { screen: ConnectMessage},
+//  });
 
 export default class Connect extends React.Component {
   constructor(props) {
@@ -95,8 +101,15 @@ export default class Connect extends React.Component {
             {this.state.chatRooms.map(({ _id, user2 }) => (
               <View style={styles.row}>
                 {/* <Text key={_id}>{user2}</Text> */}
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                onPress={() => this.props.navigation.navigate('Message')}>
                   <Text key={_id}>{user2}</Text>
+
+                    {/* <Stack.Screen
+                      name="Message"
+                      component={ConnectMessage}
+                    /> */}
+
                 </TouchableOpacity>
 
               </View>

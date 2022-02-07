@@ -13,6 +13,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 // screens
 import Fundraising from './components/fundraising';
 import Connect from './components/connect';
+import ConnectMessage from './components/connectMessage'; 
 import CalendarScreen from './components/calendar';
 import Meeting from './components/meeting';
 import VideoChat from './components/video-chat';
@@ -136,6 +137,13 @@ function App() {
             component={Home}
             options={{ headerShown: false }}
           />
+
+          <Stack.Screen
+            name="Message"
+            component={ConnectMessage}
+            options={{ headerShown: false }}
+          />
+
           <Stack.Screen
             name="Fundraising"
             component={Fundraising}
