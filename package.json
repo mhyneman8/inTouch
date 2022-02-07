@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.17",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.1.0",
     "@react-navigation/material-bottom-tabs": "^6.1.1",
@@ -17,15 +18,18 @@
     "@react-navigation/stack": "^6.1.0",
     "@types/expo": "^33.0.1",
     "@types/react-native": "^0.66.15",
+    "async-storage": "^0.1.0",
     "expo": "~44.0.0",
     "expo-calendar": "~10.1.0",
     "expo-status-bar": "~1.2.0",
+    "firebase": "^9.6.6",
     "moment": "^2.29.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-calendar-picker": "^7.1.2",
     "react-native-gesture-handler": "~2.1.0",
+    "react-native-gifted-chat": "^0.16.3",
     "react-native-paper": "^4.11.2",
     "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
@@ -35,5 +39,16 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhyneman8/inTouch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhyneman8/inTouch/issues"
+  },
+  "homepage": "https://github.com/mhyneman8/inTouch#readme"
 }
