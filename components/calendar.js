@@ -54,12 +54,12 @@ export default function CalendarScreen({ navigation }) {
         ? selectedStartDate.format('MM-DD-YY').toString()
         : '';
 
-    const openCalendarRequest = async () => {
-        const {status} = await Permissions.askAsync(Permissions.CALENDAR)
-        if (status === 'granted') {
-            setGranted(true)
-        }
-    }
+    // const openCalendarRequest = async () => {
+    //     const {status} = await Permissions.askAsync(Permissions.CALENDAR)
+    //     if (status === 'granted') {
+    //         setGranted(true)
+    //     }
+    // }
 
     useEffect(() => {
         (async () => {
@@ -69,7 +69,7 @@ export default function CalendarScreen({ navigation }) {
                 const calendars = await Calendar.getCalendarsAsync(
                     Calendar.EntityTypes.EVENT
                 );
-                console.log('here are your calendars');
+                // console.log('here are your calendars');
                 // console.log({ calendars });
             }
         })();
@@ -189,7 +189,13 @@ export default function CalendarScreen({ navigation }) {
                     {/* {eventEndTime}
                     {eventInvitees}
                     {eventNotes} */}
-                    Test1
+                    Video Call - Joanna
+                </Text>
+                <Text style={styles.subtext}>
+                    {startDate}
+                </Text>
+                <Text style={styles.subtext}>
+                    7:00 pm - 7:30 pm
                 </Text>
                 <TouchableOpacity 
                     style={styles.button}
@@ -283,6 +289,10 @@ export default function CalendarScreen({ navigation }) {
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
+        marginLeft: 60,
+        marginTop: 20
+        // textAlign: 'center'
+
     }, 
     buttonText: {
         color: 'white',
@@ -290,6 +300,12 @@ export default function CalendarScreen({ navigation }) {
         fontSize: 16,
     },
     text: {
-       color: 'black'
+       color: 'black',
+       textAlign: 'center',
+       fontSize: 20
+    },
+    subtext: {
+        textAlign: 'center',
+        marginTop: 10
     }
   })

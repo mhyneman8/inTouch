@@ -75,7 +75,7 @@ export default function NewEvent(props) {
                         
                 <TextInput
                     style={styles.input}
-                    value={props.eventInvitees}
+                    value={[props.eventInvitees]}
                     onChangeText={props.setEventInvitees}
                     placeholder={"Invite guests"}
                     multiline
