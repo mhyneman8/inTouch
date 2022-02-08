@@ -185,8 +185,8 @@ export default function CalendarScreen({ navigation }) {
             <View style={styles.container}>
                 <Text style={styles.text}>
                     {eventTitle}
-                    {eventStartTime}
-                    {/* {eventEndTime}
+                    {/*{eventStartTime}
+                    {eventEndTime}
                     {eventInvitees}
                     {eventNotes} */}
                     Video Call - Joanna
@@ -282,6 +282,7 @@ export default function CalendarScreen({ navigation }) {
         marginVertical: 10,
         margin: 5,
         textAlign: 'center',
+        alignItems: 'center',
     },
     button: {
         backgroundColor: '#694fad',
@@ -289,7 +290,6 @@ export default function CalendarScreen({ navigation }) {
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
-        marginLeft: 60,
         marginTop: 20
         // textAlign: 'center'
 
