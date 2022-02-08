@@ -1,17 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import ConnectMessage from './connectMessage';
-
-// const Stack = createStackNavigator();
-// const AppNavigator = StackNavigator({
-//   Messages: { screen: ConnectMessage},
-//  });
 
 export default class Connect extends React.Component {
   constructor(props) {
@@ -35,7 +28,6 @@ export default class Connect extends React.Component {
         measurementId: "G-KXP8BGGWZ8",
       });
     }
-    // this.referenceChatRooms = firebase.firestore().collection('chatRooms');
   }
 
   componentDidMount() {
@@ -93,64 +85,105 @@ export default class Connect extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* <View style={{ flex: 1 }}> */}
-        <Text style={styles.title}>Connect</Text>
-        <Text style={styles.subTitle}>Your Chats: </Text>
-        <View style={styles.container}>
+        <View style={styles.toggleCategory}>
+          <Text style={styles.toggleLeft}>TEAM</Text>
+          <Text style={styles.toggleRight}>CLIENTS</Text>
+        </View>
+
+        <View style={styles.search}>
+          <MaterialCommunityIcons name="account-search" color={'gray'} size={16}/>
+          <Text style={{paddingLeft: 10, color: 'gray'}}>Search</Text>
+        </View>
+
+        <View   
+        style={[styles.container, { backgroundColor: 'white' }]}
+        shadowOffset={{ width: 0, height: 2}}
+        shadowColor='#000'
+        shadowOpacity={0.5}
+        shadowRadius={2}
+        >
           <View>
             {this.state.chatRooms.map(({ _id, user2 }) => (
-              <View key={_id} style={styles.row}>
-                {/* <Text key={_id}>{user2}</Text> */}
+              <View style={styles.row}>
+                <MaterialCommunityIcons name="account-circle" color={'darkgray'} size={30}/>
                 <TouchableOpacity style={styles.button}
-                onPress={() => this.props.navigation.navigate('Message')}>
-                  <Text key={_id}>{user2}</Text>
-
-                    {/* <Stack.Screen
-                      name="Message"
-                      component={ConnectMessage}
-                    /> */}
-
+                  onPress={() => this.props.navigation.navigate('Message')}>
+                  <Text style={styles.chats} key={_id}>{user2}</Text>
                 </TouchableOpacity>
-
               </View>
             ))}
           </View>
         </View>
 
-        <Text>Team & Community options</Text>
-        <Text>Search</Text>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 40,
-    margin: 20,
+  toggleCategory: {
+    marginTop: 70,
+    margin: 30,
+    display: 'flex',
+    flexDirection: 'row',
+    width: 335,
+    height: 40,
   },
-  subTitle: {
-    fontSize: 30,
-    margin: 20,
+  toggleLeft: {
+    textAlign: 'center',
+    paddingTop: 10,
+    width: 166,
+    fontWeight: 'bold',
+    opacity: .35,
+    // borderWidth: 1,
+    // borderTopLeftRadius: 20,
+    borderRadius: 20,
+    backgroundColor: 'lightgray',
+    overflow: 'hidden',
+    // shadowOffset: { width: 0, height: 2},
+    // shadowColor:'#000',
+    // shadowOpacity:0.5,
+    // shadowRadius:2,
+  },
+  toggleRight: {
+    paddingTop: 10,
+    textAlign: 'center',
+    width: 166,
+    fontWeight: 'bold',
+    borderRadius: 20,
+    backgroundColor: 'lightgray',
+    overflow: 'hidden',
+  },
+  search: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: 10,
+    width: 335,
+    height: 40,
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: 'gray',
+    backgroundColor: 'white'
   },
   container: {
-    width: 200,
-    height: 200,
-    margin: 20,
-    borderWidth: 1,
-    borderRadius: 5,
+    width: 355,
+    height: 500,
+    marginTop: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   row: {
     display: 'flex',
     flexDirection: 'row',
-    height: 30,
-    // flex: 1,
-    justifyContent: "space-between"
+    height: 50,
+    paddingTop: 10,
+    paddingLeft: 10,
   },
   button: {
-    backgroundColor: '#c5e8ec',
+    left: 20,
     width: 190,
-    height: 25,
-    margin: 3,
+  },
+  chats: {
+    fontSize: 18
   }
 });
