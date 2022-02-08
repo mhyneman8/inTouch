@@ -248,15 +248,16 @@ export default function CalendarScreen({ navigation }) {
     },
     add: {
         backgroundColor: "#c9b6fc", 
-        borderRadius: 50, 
+        borderRadius: 30, 
+        overflow: 'hidden',
         width: 60, 
         height: 60,
         margin: 15, 
         padding: 10,
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        flex: 1,
+        // position: 'absolute',
+        // bottom: 0,
+        // right: 0,
+        // flex: 1,
     },
     component: {
         width: '90%'

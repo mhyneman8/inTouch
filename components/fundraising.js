@@ -41,11 +41,11 @@ import { StatusBar } from 'expo-status-bar';
             </View>
             ) : null }
             
-            <Text styles={styles.projectItems }>
-              <Text styles={{ margin: 20 }}>{project.title}</Text>
+            <View styles={styles.projectItems}>
+              <Text>Cause: {project.title}</Text>
               {/* <Text>{project.description}</Text> */}
-              <Text>${project.goal}</Text>
-            </Text>
+              <Text>Goal: ${project.goal}</Text>
+            </View>
             
           </View>
         );
@@ -281,16 +281,20 @@ const styles = StyleSheet.create({
       margin: 16,
   },
   add: {
+    alignSelf: 'center',
     backgroundColor: "#c9b6fc", 
-    borderRadius: 50, 
+    borderRadius: 30, 
+    overflow: 'hidden',
     width: 60, 
     height: 60,
-    margin: 15, 
+    marginTop: 30, 
+    left: -20,
     padding: 10,
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    flex: 1,
+    marginTop: 128,
+    // position: 'absolute',
+    // bottom: 0,
+    // right: 0,
+    // flex: 1,
   },
   projectContainer: {
     shadowColor: '#171717',
@@ -301,9 +305,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 45,
     paddingHorizontal: 25,
-    width: '100%',
-    marginVertical: 10,
-    margin: 20
+    // width: '100%',
+    // marginVertical: 10,
+    // margin: 20
   },
   projectItems: {
     margin: 20,

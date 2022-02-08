@@ -115,6 +115,16 @@ export default class Connect extends React.Component {
           </View>
         </View>
 
+        <View>
+          <MaterialCommunityIcons
+          style={ styles.add }
+          name="plus"
+          color="purple"
+          size={40}
+          //onPress={addNewEvent}
+          />  
+        </View>
+
       </View>
     )
   }
@@ -167,11 +177,28 @@ const styles = StyleSheet.create({
   },
   container: {
     width: 355,
-    height: 500,
+    height: 200,
     marginTop: 20,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    marginBottom: 50,
+    borderRadius: 20,
+    // borderTopLeftRadius: 20,
+    // borderTopRightRadius: 20,
+    // position: 'relative',
   },
+  add: {
+    zIndex: 1,
+    backgroundColor: "#c9b6fc", 
+    borderRadius: 30, 
+    overflow: 'hidden',
+    width: 60, 
+    height: 60,
+    marginBottom: 176, 
+    padding: 10,
+    // position: 'absolute',
+    // bottom: 0,
+    // right: 0,
+    // flex: 1,
+},
   row: {
     display: 'flex',
     flexDirection: 'row',
