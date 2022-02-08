@@ -45,10 +45,13 @@ export default class ConnectMessage extends React.Component {
 
   async getMessages() {
     let messages = '';
+    let uid = '';
     try {
       messages = await AsyncStorage.getItem('messages') || [];
+      uid = await AsyncStorage.getItem('uid');
       this.setState({
-        messages: JSON.parse(messages)
+        messages: JSON.parse(messages),
+        uid: JSON.parse(uid),
       });
     }
     catch (error) {
@@ -73,6 +76,7 @@ export default class ConnectMessage extends React.Component {
 
       // update user state with currently active user data
       this.setState({
+        uid: user.uid,
         messages: [],
         user: {
           _id: user.uid,
@@ -84,6 +88,11 @@ export default class ConnectMessage extends React.Component {
         .orderBy('createdAt', 'desc')
         .onSnapshot(this.onCollectionUpdate);
     });
+
+    console.log('current user: ', this.state.user);
+    console.log('current user: ', this.state.uid);
+    console.log('current data: ', this.state.messages);
+    // console.log('current data: ', JSON.stringify(this.state.messages));
 
     //   } else {
     //     console.log('offline');
@@ -119,6 +128,7 @@ export default class ConnectMessage extends React.Component {
     const message = this.state.messages[0];
     // add a new message to the collection
     this.referenceMessages.add({
+      uid: this.state.uid,
       _id: message._id,
       text: message.text || '',
       createdAt: message.createdAt,
