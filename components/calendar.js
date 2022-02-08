@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert, KeyboardAvoidingView } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import * as Calendar from 'expo-calendar';
 import { StatusBar } from 'expo-status-bar';
-import { TextInput } from 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+// import { createStackNavigator } from '@react-navigation/stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import NewEvent from './new-event';
 
 // import VideoChat from './video-chat';
 // import Meeting from './meeting';
@@ -31,14 +33,23 @@ import { createStackNavigator } from '@react-navigation/stack';
     //         ? selectedStartDate.format('MM-DD-YYYY').toString() 
     //         : '';
 
-const Stack = createStackNavigator();
+// const Stack = createStackNavigator();
 
 export default function CalendarScreen({ navigation }) {
     const [selectedStartDate, setSelectedStartDate] = useState(null);
     // const [granted, setGranted] = useState(false);
     const [eventIdInCalendar, setEventIdInCalendar] = useState('');
+    const [addTask, setAddTask] = useState(false);
+    const [eventShow, setEventShow] = useState(false);
 
-    const [friendNameText, setFriendNameText] = useState('');
+    const [eventTitle, setEventTitle] = useState('');
+    const [eventDate, setEventDate] = useState(startDate);
+    const [eventStartTime, setEventStartTime] = useState('');
+    const [eventEndTime, setEventEndTime] = useState('');
+    const [eventInvitees, setEventInvitees] = useState([]);
+    const [eventNotes, setEventNotes] = useState('');
+
+    // const [friendNameText, setFriendNameText] = useState('');
     const startDate = selectedStartDate
         ? selectedStartDate.format('MM-DD-YY').toString()
         : '';
@@ -83,7 +94,7 @@ export default function CalendarScreen({ navigation }) {
                 : { isLocalAccount: true, name: 'Expo Calendar' };
         const newCalendarID = await Calendar.createCalendarAsync({
             title: 'Expo Calendar',
-            color: 'blue',
+            color: '#694fad',
             entityType: Calendar.EntityTypes.EVENT,
             sourceId: defaultCalendarSource.id,
             source: defaultCalendarSource,
@@ -94,19 +105,26 @@ export default function CalendarScreen({ navigation }) {
     }
 
     const addNewEvent = async () => {
-        try {
-            const calendarId = await createCalendar().sourceId;
-
-            const res = await Calendar.createEventAsync(calendarId, {
-                endDate: (startDate),
-                startDate: (startDate),
-                title: 'Happy Birthday buddy ' + friendNameText,
-            });
-            Calendar.openEventInCalendar(res)
-            Alert.alert('Event Created!');
-        } catch (e) {
-            console.log(e);
+        if(selectedStartDate === null) {
+            Alert.alert("Select Date first")
+        } else {
+            setAddTask(!addTask)
         }
+
+
+        // try {
+        //     const calendarId = await createCalendar().sourceId;
+
+        //     const res = await Calendar.createEventAsync(calendarId, {
+        //         endDate: (startDate),
+        //         startDate: (startDate),
+        //         title: 'Happy Birthday buddy ' + friendNameText,
+        //     });
+        //     Calendar.openEventInCalendar(res)
+        //     Alert.alert('Event Created!');
+        // } catch (e) {
+        //     console.log(e);
+        // }
     }
 
     const getEvents = async () => {
@@ -116,25 +134,80 @@ export default function CalendarScreen({ navigation }) {
     }
 
     return (
-      <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+      <KeyboardAvoidingView style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
         <StatusBar style="auto"/>
 
         <CalendarPicker 
+            todayBackgroundColor='#c9b6fc'
+            selectedDayColor='#694fad'
             onDateChange={setSelectedStartDate} 
             onChange={getEvents}
         />
         
-        <Text style={styles.dateText} >Selected Date: {startDate}</Text>
-        <TextInput
+        {/* <Text style={styles.dateText} >Selected Date: {startDate}</Text> */}
+        {/* <TextInput
             onChangeText={setFriendNameText}
             value={friendNameText}
             placeholder="Enter the name of your friend"
             style={styles.input}
-        />
-        <Button 
+        /> */}
+        { addTask ? (
+            <KeyboardAvoidingView style={styles.component}>
+                <NewEvent addTask={addTask} 
+                    setAddTask={setAddTask} 
+                    startDate={startDate} 
+                    setEventShow={setEventShow}
+                    setEventTitle={setEventTitle}
+                    eventTitle={eventTitle}
+                    setEventStartTime={setEventStartTime}
+                    eventStartTime={eventStartTime}
+                    setEventEndTime={setEventEndTime}
+                    eventEndTime={eventEndTime}
+                    setEventInvitees={setEventInvitees}
+                    eventInvitees={eventInvitees}
+                    setEventNotes={setEventNotes}
+                    eventNotes={eventNotes}
+                />
+            </KeyboardAvoidingView>
+        ) : (
+            <View>
+                <MaterialCommunityIcons
+                    style={ styles.add }
+                    name="plus"
+                    color="purple"
+                    size={40}
+                    onPress={addNewEvent}
+                />  
+            </View>
+        )}
+
+        { eventShow ? (
+            <View style={styles.container}>
+                <Text style={styles.text}>
+                    {eventTitle}
+                    {eventStartTime}
+                    {/* {eventEndTime}
+                    {eventInvitees}
+                    {eventNotes} */}
+                    Test1
+                </Text>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={() => navigation.navigate('Meeting')}
+                >
+                    <Text style={styles.buttonText}>Meeting Information</Text>
+                </TouchableOpacity>
+            </View>
+        ) : (
+            null
+        )}
+        
+
+        {/* <Button 
             title={"Add to Calendar"}
             onPress={addNewEvent}
-        />
+        /> */}
+        
 
         {/* <Text>Show tasks at bottom when clicked on day</Text>
         <Text>Click meeting event to see details</Text> */}
@@ -160,17 +233,62 @@ export default function CalendarScreen({ navigation }) {
           onPress={() => navigation.navigate('Meeting')}
         />  */}
 
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 
   const styles = StyleSheet.create({
-      input: {
-          height: 40,
-          margin: 12,
-          borderWidth: 1,
-      },
-      dateText: {
-          margin: 16,
-      },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+    },
+    dateText: {
+        margin: 16,
+    },
+    add: {
+        backgroundColor: "#c9b6fc", 
+        borderRadius: 50, 
+        width: 60, 
+        height: 60,
+        margin: 15, 
+        padding: 10,
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        flex: 1,
+    },
+    component: {
+        width: '90%'
+    },
+    container: {
+        flex: 1,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        paddingVertical: 45,
+        paddingHorizontal: 25,
+        width: '100%',
+        marginVertical: 10,
+        margin: 5,
+        textAlign: 'center',
+    },
+    button: {
+        backgroundColor: '#694fad',
+        width: '70%',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+    }, 
+    buttonText: {
+        color: 'white',
+        fontWeight: '700',
+        fontSize: 16,
+    },
+    text: {
+       color: 'black'
+    }
   })

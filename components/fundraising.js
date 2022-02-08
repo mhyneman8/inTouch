@@ -97,7 +97,6 @@ import { StatusBar } from 'expo-status-bar';
       ) {
         Alert.alert("Must fill out all inputs")
       } else {
-        Alert.alert('not empty')
         console.log(projectName)
         console.log(projectGoal)
         setProjectArray((projectArray) => 
@@ -144,37 +143,37 @@ import { StatusBar } from 'expo-status-bar';
 
                 { projectName === "" ? (
                   <View>
-                  <TextInput
-                    style={styles.input}
-                    value={projectName}
-                    placeholder={"Enter Project Name"}
-                    onChangeText={setProjectName}
-                  />
+                    <TextInput
+                      style={styles.input}
+                      value={projectName}
+                      placeholder={"Enter Project Name"}
+                      onChangeText={setProjectName}
+                    />
+                  
+                    <TextInput
+                      style={styles.input}
+                      value={projectGoal}
+                      onChangeText={setProjectGoal}
+                      placeholder={"Enter Project Goal"}
+                      name="goal"
+                      keyboardType='numeric'
+                    /> 
                 
-                  <TextInput
-                    style={styles.input}
-                    value={projectGoal}
-                    onChangeText={setProjectGoal}
-                    placeholder={"Enter Project Goal"}
-                    name="goal"
-                    keyboardType='numeric'
-                  /> 
-              
-                  <TextInput
-                    style={styles.input}
-                    value={projectDescription}
-                    onChangeText={setProjectDescription}
-                    placeholder={"Enter project Description"}
-                    name="description"
-                    multiline
-                  /> 
-                  <Button 
-                    title="Submit"
-                    style={{ width: 50, height: 50 }}
-                    onPress={startNewProject}
-                  />
+                    <TextInput
+                      style={styles.input}
+                      value={projectDescription}
+                      onChangeText={setProjectDescription}
+                      placeholder={"Enter project Description"}
+                      name="description"
+                      multiline
+                    /> 
+                    <Button 
+                      title="Submit"
+                      style={{ width: 50, height: 50 }}
+                      onPress={startNewProject}
+                    />
 
-                </View>
+                  </View>
                 ) : (
                   <View>
                     <TextInput

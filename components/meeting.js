@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default class Meeting extends React.Component {
   render() {
@@ -13,13 +14,30 @@ export default class Meeting extends React.Component {
         <Text>Share documents</Text>
 
         {/* button to join meeting */}
-        <Button 
-            title="VideoChat"
-            onPress={() => this.props.navigation.navitate('VideoChat')}
-        />
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => navigation.navigate('VideoChat')}
+        >
+          <Text style={styles.buttonText}>Video Chat</Text>
+        </TouchableOpacity>
         {/* button for call settings */}
         
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#694fad',
+    width: '70%',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+  }, 
+  buttonText: {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 16,
+  },
+})

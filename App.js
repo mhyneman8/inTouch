@@ -153,7 +153,7 @@ function App() {
             component={CalendarScreen}
           />
           <Stack.Screen
-            name="Video Chat"
+            name="VideoChat"
             component={VideoChat}
           />
           <Stack.Screen
