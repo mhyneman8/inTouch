@@ -104,7 +104,7 @@ export default class Connect extends React.Component {
         >
           <View>
             {this.state.chatRooms.map(({ _id, user2 }) => (
-              <View style={styles.row}>
+              <View key={_id} style={styles.row}>
                 <MaterialCommunityIcons name="account-circle" color={'darkgray'} size={30}/>
                 <TouchableOpacity style={styles.button}
                   onPress={() => this.props.navigation.navigate('Message')}>
