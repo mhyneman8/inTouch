@@ -1,17 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import ConnectMessage from './connectMessage';
-
-// const Stack = createStackNavigator();
-// const AppNavigator = StackNavigator({
-//   Messages: { screen: ConnectMessage},
-//  });
 
 export default class Connect extends React.Component {
   constructor(props) {
@@ -35,7 +28,6 @@ export default class Connect extends React.Component {
         measurementId: "G-KXP8BGGWZ8",
       });
     }
-    // this.referenceChatRooms = firebase.firestore().collection('chatRooms');
   }
 
   componentDidMount() {

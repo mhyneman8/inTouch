@@ -6,6 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import NetInfo from '@react-native-community/netinfo';
 // import CustomActions from './CustomActions';
 // import MapView from 'react-native-maps';
+import { StatusBar } from 'expo-status-bar';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 // const firebase = require('firebase');
 // require('firebase/firestore');
@@ -13,9 +16,11 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
+const Stack = createStackNavigator();
+
 export default class ConnectMessage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       messages: [],
       user: {
@@ -155,9 +160,10 @@ export default class ConnectMessage extends React.Component {
     return (
       // <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
       <View style={{ flex: 1 }}>
-        <Text>menu</Text>
+        <StatusBar style="auto" />
+        {/* <Text>menu</Text>
         <Text>Title</Text>
-        <Text>Notifications</Text>
+        <Text>Notifications</Text> */}
 
 
         <GiftedChat
@@ -181,11 +187,13 @@ other features to consider adding:
  5.2: https://careerfoundry.com/en/course/full-stack-immersion/exercise/chat-ui-accessibility#summary
  */}
 
-        {/* <Text>Connect</Text> 
+        {/* 
+        <Text>Connect</Text> 
         <Text>Team & Community options</Text>
-        <Text>Maybe firebase for backend. category : team/ or client to switch between sections</Text> */}
+        <Text>Maybe firebase for backend. category : team/ or client to switch between sections</Text> 
         <Text>Search</Text>
         <Text>List of contacts</Text>
+        */}
       </View>
     )
   }

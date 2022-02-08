@@ -141,7 +141,6 @@ function App() {
           <Stack.Screen
             name="Message"
             component={ConnectMessage}
-            options={{ headerShown: false }}
           />
 
           <Stack.Screen
