@@ -155,11 +155,6 @@ export default class ConnectMessage extends React.Component {
     return (
       // <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
       <View style={{ flex: 1 }}>
-        <Text>menu</Text>
-        <Text>Title</Text>
-        <Text>Notifications</Text>
-
-
         <GiftedChat
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
@@ -185,7 +180,7 @@ other features to consider adding:
         <Text>Team & Community options</Text>
         <Text>Maybe firebase for backend. category : team/ or client to switch between sections</Text> */}
         <Text>Search</Text>
-        <Text>List of contacts</Text>
+
       </View>
     )
   }
