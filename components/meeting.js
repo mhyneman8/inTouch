@@ -24,7 +24,8 @@ export default function Meeting({ navigation }) {
           <Text style={styles.subHeading}>
               Notes
           </Text>
-            <View style={{ flexDirection: 'row', marginBottom: 20 }}>
+            {/* <View style={{display: 'flex', flexDirection: 'row', marginBottom: 20 }}> */}
+            <View style={{marginBottom: 20 }}>
               <Text style={styles.subtext}>
               Topics to be discussed
               </Text>
@@ -39,7 +40,7 @@ export default function Meeting({ navigation }) {
               </Text>
             </View>
          
-          <Text sytles={styles.subHeading}>
+          <Text style={styles.subHeading}>
             Share documents
           </Text>
           
@@ -70,24 +71,24 @@ export default function Meeting({ navigation }) {
   }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    width: '100%',
+  },
   button: {
     backgroundColor: '#694fad',
     width: '70%',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
-    position: 'absolute',
+    alignSelf: 'center',
+    // position: 'absolute',
     width: '90%',
     height: 47,
     // bottom: 0,
     // flex: 2,
   }, 
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    width: '100%',
-  
-  },
   buttonText: {
     color: 'white',
     fontWeight: '700',
@@ -96,9 +97,10 @@ const styles = StyleSheet.create({
   subHeading: {
     fontSize: 20,
     margin: 20,
-    marginLeft: 50,
+    //marginLeft: 50,
     color: '#402F6B',
-    borderTopColor: 'grey'
+    borderTopColor: 'grey',
+    alignSelf: 'center'
   },
   text: {
     fontSize: 20,
@@ -108,11 +110,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   subtext: {
+    marginLeft: 30,
+    padding: 5,
     // display: 'block'
-    // marginLeft: 30
     // flex: 1,
-    width: '10%',
-    flexDirection: 'row'
+    // display: 'flex',
+    // width: '10%',
+    // flexDirection: 'column'
   },
   time: {
     color: '#402f6b',
