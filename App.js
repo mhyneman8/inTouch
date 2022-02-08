@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   statusBar: {
-    backgroundColor: '#c9b6fc',
+    backgroundColor: '#bab1d2',
     height: Constants.statusBarHeight
   }
 });

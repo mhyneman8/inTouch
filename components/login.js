@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 // import { auth } from '../services/firebase';
 
@@ -43,6 +43,7 @@ const LoginScreen = () => {
             style={styles.container}
             behavior="padding"
         >
+            <Image source={require('../assets/logo.png')} style={styles.logo} />
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder='Email'
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
         width: '80%'
     },
     input: {
-        backgroundColor: 'white',
+        backgroundColor: '#fff',
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 10,
@@ -106,16 +107,16 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     button: {
-        backgroundColor: '#694fad',
+        backgroundColor: '#523d87',
         width: '100%',
         padding: 15,
         borderRadius: 10,
         alignItems: 'center',
     },
     buttonOutline: {
-        backgroundColor: 'white',
+        backgroundColor: '#fff',
         marginTop: 5,
-        borderColor: '#694fad',
+        borderColor: '#523d87',
         borderWidth: 2,
     },
     buttonText: {
@@ -124,8 +125,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     },
     buttonOutlineText: {
-    color: '#694fad',
+    color: '#523d87',
     fontWeight: '700',
     fontSize: 16,
     },
+    logo: {
+        width: '80%',
+        height: 200,
+        resizeMode: 'contain',
+        marginBottom: 40
+    }
 })

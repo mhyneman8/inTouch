@@ -99,7 +99,7 @@ export default class Connect extends React.Component {
         <View style={styles.container}>
           <View>
             {this.state.chatRooms.map(({ _id, user2 }) => (
-              <View style={styles.row}>
+              <View key={_id} style={styles.row}>
                 {/* <Text key={_id}>{user2}</Text> */}
                 <TouchableOpacity style={styles.button}
                 onPress={() => this.props.navigation.navigate('Message')}>
