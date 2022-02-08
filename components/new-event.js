@@ -69,7 +69,7 @@ export default function NewEvent(props) {
                     style={styles.input}
                     value={props.eventEndTime}
                     onChangeText={props.setEventEndTime}
-                    placeholder={"8:00 pm"}
+                    placeholder={"7:30 pm"}
                     keyboardType='numeric'
                 /> 
                         
