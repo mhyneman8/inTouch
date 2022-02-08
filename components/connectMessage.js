@@ -1,7 +1,7 @@
 import { TabActions } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Button, Platform, KeyboardAvoidingView } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { Bubble, GiftedChat } from 'react-native-gifted-chat';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import NetInfo from '@react-native-community/netinfo';
 // import CustomActions from './CustomActions';
@@ -150,6 +150,30 @@ export default class ConnectMessage extends React.Component {
       });
   }
 
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#c9b6fc',
+          },
+          left: {
+            backgroundColor: '#523d87',
+          }
+        }}
+        textStyle={{
+          right: {
+            color: '#fff',
+          },
+          left: {
+            color: '#fff',
+          }
+        }}
+        />
+    );
+  }
+
   // stop receiving updates about the collection once component is unmounted
   componentWillUnmount() {
     this.authUnsubscribe();
@@ -167,6 +191,7 @@ export default class ConnectMessage extends React.Component {
 
 
         <GiftedChat
+          renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={this.state.user}
