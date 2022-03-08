@@ -5,27 +5,86 @@ import { View, Text, Button, StyleSheet, TextInput, SafeAreaView, KeyboardAvoidi
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 // import { ScrollView } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-  export default function Fundraising() {
-    const [projectName, setProjectName] = useState();
-    const [projectGoal, setProjectGoal] = useState();
-    const [projectDescription, setProjectDescription] = useState();
-    const [shouldShow, setShouldShow] = useState(false);
-    const [showEdit, setShowEdit] = useState(false);
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
-    const [projectArray, setProjectArray] = useState([
-      {title: "title1", description: "Des1", goal: 200},
-      {title: "title2", description: "Des2", goal: 400},
-      {title: "title3", description: "Des3", goal: 3030},
-    ]);
 
-    const list = () => {
-      return projectArray.map((project) => {
-        return (
-          <View key={project.title} style={ styles.projectContainer }>
-            { showEdit ? (
-              <View>
+export default function Fundraising() {
+  const [projectName, setProjectName] = useState();
+  const [projectGoal, setProjectGoal] = useState();
+  const [projectDescription, setProjectDescription] = useState();
+  const [shouldShow, setShouldShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+
+  const [projectArray, setProjectArray] = useState([
+    {title: "title1", description: "Des1", goal: 200},
+    {title: "title2", description: "Des2", goal: 400},
+    {title: "title3", description: "Des3", goal: 3030},
+  ]);
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp({
+      apiKey: "AIzaSyAWz9TnEzn8AcXTd9y_HGATKesMdXQtCn8",
+      authDomain: "intouch-62b9e.firebaseapp.com",
+      projectId: "intouch-62b9e",
+      storageBucket: "intouch-62b9e.appspot.com",
+      messagingSenderId: "464637178122",
+      appId: "1:464637178122:web:42f1d40d0aa18982a38af3",
+      measurementId: "G-KXP8BGGWZ8",
+    });
+  }
+  this.referenceProjects = firebase.firestore().collection("projects");
+  
+  const getProjects = () => {
+    let projects = '';
+    try {
+      projects = AsyncStorage.getItem('projects') || [];
+      // uid = await AsyncStorage.getItem('uid');
+      setProjectArray({
+        projects: JSON.parse(projects)
+      });
+      // this.setState({
+      //   messages: JSON.parse(messages),
+        // uid: JSON.parse(uid),
+      // });
+    }
+    catch (error) {
+      console.log(error.message);
+    }
+    console.log(projects)
+  };
+
+  const onCollectionUpdate = (querySnapshot) => {
+    const projects = [];
+    // go through each document
+    querySnapshot.forEach((doc) => {
+      // get the QueryDocumentSnapshot's data
+      var data = doc.data();
+      projects.push({
+        title: data._title,
+        description: data.description,
+        // createdAt: data.createdAt.toDate(),
+        goal_amt: data.goal_amt,
+        current_amt: data.current_amt
+      });
+    });
+    setProjectArray(projects)
+  }
+
+  useEffect(() => {
+    this.referenceProjects = firebase.firestore().collection('projects');
+  })
+
+  const list = () => {
+    return projectArray.map((project) => {
+      return (
+        <View key={project.title} style={ styles.projectContainer }>
+          { showEdit ? (
+            <View>
                 <MaterialCommunityIcons
                   name="delete"
                   color="purple"
@@ -202,7 +261,8 @@ import { StatusBar } from 'expo-status-bar';
                     /> 
                     <TouchableOpacity
                       style={ styles.button }
-                      onPress={startNewProject}
+                      // onPress={startNewProject}
+                      onPress={getProjects}
                     >
                       <Text style={ styles.buttonText }>
                         Submit
