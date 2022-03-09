@@ -38,7 +38,7 @@ React Native, Expo Calendar, Firestore/Firebase
 ### Developers
 
 - [Mallory Hyneman](https://github.com/mhyneman8)
-- [EllenStuder](https://github.com/ellenmariestuder)
+- [Ellen Studer](https://github.com/ellenmariestuder)
 
 ### Designer
 
