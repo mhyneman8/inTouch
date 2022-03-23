@@ -1,5 +1,8 @@
 // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
+
+import { getDatabase, ref, onValue, set } from 'firebase/database';
 // import { getFirestore, collection } from 'firebase/firestore';
 // import * as firebase from 'firebase';
 // import firebase from 'firebase/compat/app';
@@ -11,17 +14,45 @@
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAWz9TnEzn8AcXTd9y_HGATKesMdXQtCn8",
-//   authDomain: "intouch-62b9e.firebaseapp.com",
-//   projectId: "intouch-62b9e",
-//   storageBucket: "intouch-62b9e.appspot.com",
-//   messagingSenderId: "464637178122",
-//   appId: "1:464637178122:web:42f1d40d0aa18982a38af3",
-//   measurementId: "G-KXP8BGGWZ8"
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyAWz9TnEzn8AcXTd9y_HGATKesMdXQtCn8",
+  authDomain: "intouch-62b9e.firebaseapp.com",
+  projectId: "intouch-62b9e",
+  storageBucket: "intouch-62b9e.appspot.com",
+  messagingSenderId: "464637178122",
+  appId: "1:464637178122:web:42f1d40d0aa18982a38af3",
+  measurementId: "G-KXP8BGGWZ8"
+};
 
-// initializeApp(firebaseConfig)
+initializeApp(firebaseConfig)
+
+const firestore = getFirestore();
+
+await setDoc(doc(firestore, "projects", "test11"), {
+    // title: "test11",
+    description: "test11",
+    goal: "test11"
+});
+
+
+function getProjects(title, description, goal) {
+    const db = getDatabase();
+    const reference = ref(db, 'projects/' + title);
+    set(reference, {
+        title: title,
+        description: description,
+        goal: goal,
+    })
+}
+
+// setupProjectListener(title) { const db = getDatabase();
+// const reference = ref(db, 'projects/' + title);
+// onValue(reference, (snapshot) => {
+//     const title = snapshot.val().title;
+//     console.log("new title: " + title);
+// })
+// }
+
 
 // const db = getFirestore()
 
