@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { initializeApp } from 'firebase/app';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -19,26 +20,54 @@ export default function Fundraising() {
   const [projectDescription, setProjectDescription] = useState();
   const [shouldShow, setShouldShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-
-  const [projectArray, setProjectArray] = useState([
-    {title: "title1", description: "Des1", goal: 200},
-    {title: "title2", description: "Des2", goal: 400},
-    {title: "title3", description: "Des3", goal: 3030},
-  ]);
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp({
-      apiKey: "AIzaSyAWz9TnEzn8AcXTd9y_HGATKesMdXQtCn8",
-      authDomain: "intouch-62b9e.firebaseapp.com",
-      projectId: "intouch-62b9e",
-      storageBucket: "intouch-62b9e.appspot.com",
-      messagingSenderId: "464637178122",
-      appId: "1:464637178122:web:42f1d40d0aa18982a38af3",
-      measurementId: "G-KXP8BGGWZ8",
-    });
-  }
-  this.referenceProjects = firebase.firestore().collection("projects");
   
+  const [user, setUser] = useState();
+
+  const [projectArray, setProjectArray] = useState(
+    // {title: "title1", description: "Des1", goal: 200},
+    // {title: "title2", description: "Des2", goal: 400},
+    // {title: "title3", description: "Des3", goal: 3030},
+  );
+
+  const app = initializeApp({
+    apiKey: "AIzaSyAWz9TnEzn8AcXTd9y_HGATKesMdXQtCn8",
+    authDomain: "intouch-62b9e.firebaseapp.com",
+    projectId: "intouch-62b9e",
+    storageBucket: "intouch-62b9e.appspot.com",
+    messagingSenderId: "464637178122",
+    appId: "1:464637178122:web:42f1d40d0aa18982a38af3",
+    measurementId: "G-KXP8BGGWZ8",
+  });
+
+  if (firebase.apps.length === 0) {
+    // initializeApp(app);
+    firebase.app({});
+  }
+  
+  // const db = getFirestore(app);
+
+  // if (!firebase.apps.length) {
+  //   firebase.initializeApp({
+  //     apiKey: "AIzaSyAWz9TnEzn8AcXTd9y_HGATKesMdXQtCn8",
+  //     authDomain: "intouch-62b9e.firebaseapp.com",
+  //     projectId: "intouch-62b9e",
+  //     storageBucket: "intouch-62b9e.appspot.com",
+  //     messagingSenderId: "464637178122",
+  //     appId: "1:464637178122:web:42f1d40d0aa18982a38af3",
+  //     measurementId: "G-KXP8BGGWZ8",
+  //   });
+    // const db = getFirestore(app);
+  // }
+  // this.referenceProjects = firebase.firestore().collection("projects");
+  
+  const createProjectArray = (userName) => {
+    const projectsColRef = collection(db, 'projects')
+    return addDoc(projectsColRef, {
+      created: serverTimestamp(),
+      users: [{ name: userName }]
+    });
+  };
+
   const getProjects = () => {
     let projects = '';
     try {
@@ -76,8 +105,21 @@ export default function Fundraising() {
   }
 
   useEffect(() => {
-    this.referenceProjects = firebase.firestore().collection('projects');
-  })
+    // this.referenceProjects = firebase.firestore().collection('projects');
+    if (projectName) {
+      FirestoreService.getProjects(projectName)
+        .then(projects => {
+          if (projects.exists) {
+            setError(null);
+            setProjectArray(projects.data());
+          } else {
+            setError('project list not found');
+            setProjectArray();
+          }
+        })
+        .catch(() => setError('project list get fail'))
+    }
+  }, [projectArray, setProjectArray]);
 
   const list = () => {
     return projectArray.map((project) => {
@@ -229,7 +271,8 @@ export default function Fundraising() {
                     <Button 
                       title="Submit"
                       style={{ width: 50, height: 50 }}
-                      onPress={startNewProject}
+                      // onPress={startNewProject}
+                      onPress={getProjects}
                     />
 
                   </View>
@@ -261,8 +304,7 @@ export default function Fundraising() {
                     /> 
                     <TouchableOpacity
                       style={ styles.button }
-                      // onPress={startNewProject}
-                      onPress={getProjects}
+                      onPress={startNewProject}
                     >
                       <Text style={ styles.buttonText }>
                         Submit
